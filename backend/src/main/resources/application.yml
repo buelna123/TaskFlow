@@ -1,0 +1,49 @@
+spring:
+  config:
+    activate:
+      on-profile: dev
+  datasource:
+    url: jdbc:postgresql://db:5432/taskflow_dev
+    username: taskflow
+    password: secret
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+
+app:
+  jwt:
+    secret: "VGhpcyBpcyBhIHNlY3JldCBrZXkgZm9yIEpXVCBhdXRoZW50aWNhdGlvbiBzZWNyZXQh" # Base64
+    expiration-ms: 86400000 # 24h
+    refresh-expiration-ms: 604800000 # 7d
+
+logging:
+  level:
+    org.springframework.security: TRACE
+    org.springframework.web: TRACE
+    org.springframework.web.cors: TRACE
+    org.hibernate.SQL: DEBUG
+    org.hibernate.type.descriptor.sql.BasicBinder: TRACE
+
+management:
+  endpoints:
+    web:
+      base-path: /actuator
+      exposure:
+        include: health,info
+    endpoint:
+      health:
+        show-details: always
+        show-components: always
+      info:
+        enabled: true
+
+  spring: 
+    security:
+      filter:
+        dispatcher-types: REQUEST, ASYNC, ERROR

@@ -1,0 +1,29 @@
+# .gitignore
+# Backend (Java/Spring)
+**/target/
+**/.mvn/wrapper/maven-wrapper.jar
+**/.classpath
+**/.project
+**/.settings/
+**/.springBeans
+**/mvnw.cmd
+
+# Frontend (Node/React)
+**/node_modules/
+**/dist/
+**/.env
+**/.env.local
+**/.env.development.local
+**/.env.test.local
+**/.env.production.local
+**/npm-debug.log*
+**/yarn-debug.log*
+**/yarn-error.log*
+**/.idea
+**/.vscode
+**/.cache
+**/.DS_Store
+
+# Docker
+**/.dockerignore
+**/docker-compose.override.yml

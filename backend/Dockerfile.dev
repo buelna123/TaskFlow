@@ -1,0 +1,18 @@
+FROM eclipse-temurin:21-jdk-jammy
+
+WORKDIR /app
+
+# Instalar Maven manualmente
+RUN apt-get update && \
+    apt-get install -y maven && \
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/*
+
+COPY pom.xml .
+RUN mvn dependency:go-offline
+
+COPY src src
+
+EXPOSE 8080 5005
+
+CMD ["mvn", "spring-boot:run", "-Dspring-boot.run.profiles=dev", "-Dspring-boot.run.jvmArguments=-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=*:5005"]
